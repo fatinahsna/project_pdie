@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camellia Residence | Registration</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body{
+            margin: 0%;
+            top: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        header{
+            background-image: linear-gradient(270deg, rgba(212, 150, 3, 1) 0%, rgba(132, 63, 11, 1) 80%);
+            height: 70px;
+            border-bottom: 1px solid whitesmoke;
+            padding-top: 10px;
+            padding-left: 10px;
+            top: 0;
+            position: sticky;
+            background-color: white;
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+        }
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 80px;
+            left: 0;
+            background-color: #843F0B;
+            overflow-x: hidden;
+            
+        }
+        .sidenav #page {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .sidenav #page.active {
+            background-color: #d49603;
+            color: white;
+        }
+
+        .sidenav #page:hover:not(.active) {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        div.content {
+            margin-left: 200px;
+            height: 707px;
+            background-color: whitesmoke;
+            font-size: 11pt;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidenav {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .sidenav #page {float: left;}
+            div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidenav #page {
+                text-align: center;
+                float: none;
+            }
+        }
+        #title{
+            background-color: white;
+            box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+            height: 80px;
+            padding-left: 2%;
+            padding-top: 1%;
+        }
+        .info{
+            background-color: white;
+            box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 1%;
+            margin: 1.5%;
+        }
+        hr{
+            border: 0.5px solid whitesmoke;
+            margin-top: 330px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        input,textarea,select:hover{
+            cursor: pointer;
+        }
+        input,textarea,select{
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #a6a6a6;
+            margin-top: 0.5%;
+        }
+        #submitbut{
+            float: right;
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+            border: 0;
+            background-color: #d49603;
+            color: white;
+        }
+        #submitbut:hover{
+            cursor: pointer;
+            background-color: #843F0B;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <header>
+        <img src="{% static 'logo.png' %}" alt="" width="90px" height="58px" style="float: left; margin-left: 1%;">
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidenav">
+        <a href="{% url 'admin_dashboard' myadmin.adminID %}" id="page">Dashboard</a>
+        <a href="{% url 'admin_resident' myadmin.adminID %}" id="page">Resident</a>
+        <a href="{% url 'admin_guard' myadmin.adminID %}" class="active" id="page">Security Guard</a>
+        <a href="{% url 'admin_report' myadmin.adminID %}" id="page">Report</a>
+        <a href="{% url 'admin_visitor' myadmin.adminID %}" id="page">Visitor</a>
+        <a href="{% url 'admin_event' myadmin.adminID %}" id="page">House Event</a>
+        <br>
+        <hr>
+        <a href="{% url 'guard_login' %}" style="margin-left: 3%;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg></a>
+    </div>
+    
+    <!-- Page Content -->
+    <div class="content">
+        <div id="title">
+            <p><span style="font-size: 20pt; font-weight: bold;">Register New Security Guard <br></span>Create an account for new security guard in Camellia Residence here.</p>
+        </div>
+
+        <div style="margin: 1%; justify-content: center; height: max-content;">
+            <div class="info" style="height: 290px;">
+                <form action="" method="post" style="font-weight: bold; padding: 0.5%;">
+                    {% csrf_token %}
+                    <span style="margin-right: 28.9%;">Guard ID</span> Name <br>
+                    <input type="text" name="guardID" placeholder="Example: SG-01" maxlength="5" required style="width: 31%; margin-right: 3.85%;">
+                    <input type="text" name="guardName" placeholder="Enter guard's name" required style="width: 63.8%; float: right;"><br><br>
+                    <span style="margin-right: 28.6%;">Phone No</span> <span style="margin-right: 30.8%;">Post</span> Shift <br>
+                    <input type="text" name="guardPhoneno" placeholder="Example: +(60)12 - 345 6789" required style="width: 31%; margin-right: 3.85%;">
+                    <select name="guardPost" required style="width: 30%; height: 34px;">
+                        <option value="">Please Select</option>
+                        <option value="Post 1">Post 1</option>
+                        <option value="Post 2">Post 2</option>
+                    </select>
+                    <select name="guardShift" required style="width: 30%; float: right; height: 34px;">
+                        <option value="">Please Select</option>
+                        <option value="Day Shift">Day Shift</option>
+                        <option value="Night Shift">Night Shift</option>
+                    </select><br><br>
+                    Password <br><input type="text" name="guardPassword" maxlength="10" placeholder="Create a password (Max 20 characters long)" required style="width: 99.5%;"><br><br><br>
+                    <input type="submit" value="CREATE" id="submitbut">
+                </form>
+        </div>
+    </div>
+</body>
+</html>

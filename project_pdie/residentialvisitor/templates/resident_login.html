@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camellia Residence | Resident Login</title>
+    <style>
+        body{
+            margin: 0%;
+            padding: 4%;
+            background-color: whitesmoke;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .login{
+            box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 400px;
+            height: 350px;
+            background-color: white;
+        }
+        button:hover{
+            cursor: pointer;
+        }
+        input:hover{
+            cursor: pointer;
+        }
+        input{
+            width: 350px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #a6a6a6;
+        }
+        .type{
+            width: 400px;
+            height: 60px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: white;
+            display: flex;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            font-weight: bold;
+        }
+        #submitbut{
+            background-color: #d49603; 
+            color: white; 
+            font-weight: bold; 
+            width: 360px;
+        }
+        #submitbut:hover{
+            background-color: #843F0B;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <center>
+        <img src="{% static 'logo.png' %}" alt="" width="200px" height="100px"> <br><br>
+        <span>Welcome to Residential Visitor Management Information System for Camellia Residence.</span><br><br><br>
+        <div class="login">
+            <div class="type">
+                <div style="width: 50%;"><br><a href="{% url 'resident_login' %}" style="color: #d49603;">Resident</a></div>
+                <div style="width: 50%; background-color: whitesmoke;"><br><a href="{% url 'guard_login' %}" style="color: black;">Guard</a></div>
+            </div>
+            <br><br>
+            <form action="residentlogin" method="post">
+            {% csrf_token %}
+                <input type="text" placeholder=" Your id" name="resID" required><br><br>
+                <input type="password" placeholder=" Your password" name="resPassword" required><br><br><br>
+                <input type="submit" value="LOGIN" id="submitbut">
+            </form><br>
+            <span style="color: red; font-size: small;">{{message}}</span>
+        </div>
+    </center>
+</body>
+</html>
